@@ -1,0 +1,8 @@
+# Files
+testing.py
+*.pyc
+
+# Folders
+ideas/*
+old/*
+__pycache__/*

@@ -1,0 +1,82 @@
+- name: fill
+  args:
+    - fillchar, opt
+
+- name:
+    - width
+    - zwidth
+  args:
+    - size, man
+
+- name: align
+  args:
+    - align, man
+
+- name:
+    - left
+    - right
+    - center
+
+- name: field
+  args:
+    - size, man
+    - fillchar, man
+    - align, man
+
+- name: sign
+  args:
+    - which, opt
+
+- name: precision, prec
+  args:
+    - prec, man
+
+- name:
+    - string, str, s
+    - bin, xb
+    - rawbin, rbin, b
+    - char, c
+    - decimal, dec, d
+    - octal, oct, xo
+    - rawoctal, rawoct, roct, o
+    - hex, xx
+    - Hex, xX
+    - rawhex, rhex, x
+    - rawHex, rHex, X
+    - number, n
+    - exp, e
+    - Exp, E
+    - general, gen, g
+    - General, Gen, G
+    - percentage, %
+
+- name:
+  - float, f
+  - Float, F
+  args:
+    - prec, opt
+
+- name: trim
+  args:
+    - limit, man
+    - stopchar, opt
+
+- name: wrap
+  args:
+    - wrapper, man
+
+- name: canvas
+  args:
+    - size, man
+    - fillchar, man
+    - align, opt
+
+- name:
+  - floatsep, decsep
+  args:
+    - char, man
+
+- name:
+  - milesep
+  args:
+    - char, opt
