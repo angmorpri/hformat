@@ -6,3 +6,4 @@ testing.py
 ideas/*
 old/*
 __pycache__/*
+hformat/__pycache__/*
