@@ -49,7 +49,9 @@
 
 
     Created:        06 Ago 2020
-    Last modified:  08 Ago 2020
+    Last modified:  11 Ago 2020
+        + 'width' is now checked just before formatting, so relative width can
+        work properly even with separators and trimming modifications.
     TODO:
         + [Prop] Make the use of extra features optional.
         + Include more f-strings features (such as !s !r or =)
@@ -365,22 +367,6 @@ class HumanFormatter (object):
             aux = self._func.args.get('prec', '')
             precision = '.'+aux if aux else ''
 
-        # Width
-        #   Can be obtained from 'width', 'zwidth', 'field' and 'canvas'.
-        width = zero = ''
-        if get_func('width', 'field', 'canvas', 'zwidth'):
-            width = self._func.args['size']
-
-            if self._func.name == 'zwidth':
-                zero = '0'
-
-            if width.startswith('+'):
-                # Relative width, needs to know which will be the final length
-                # of the string.
-                # Ignores *trim* function.
-                width = str(int(width[1:]) \
-                            + len("{0:{1}}".format(final_expr, precision)))
-
         # Type (ptype)
         ptype = alter = ''
         _ptype_dict = {
@@ -412,7 +398,9 @@ class HumanFormatter (object):
         # Pre-format functions
         # Some functions may need to pre-format the string only with some specs,
         # and then use the result (as a string) with the rest of them.
-        # This happens with 'trim', 'milesep' and 'decsep'.
+        # This happens with 'trim', 'milesep' and 'decsep'. 'width' also may
+        # need to know the final result of the string, for the relative width
+        # option.
 
         # Comma - Miles & Decimals separator
         #   Can be set with 'milesep' (for miles) and 'decsep' (for decimals).
@@ -450,6 +438,23 @@ class HumanFormatter (object):
             else:
                 final_expr = preformat[:limit]
             alter = precision = ptype = ''  # Reset, as they won't be used.
+
+        # Width
+        #   Can be obtained from 'width', 'zwidth', 'field' and 'canvas'.
+        width = zero = ''
+        if get_func('width', 'field', 'canvas', 'zwidth'):
+            width = self._func.args['size']
+
+            if self._func.name == 'zwidth':
+                zero = '0'
+
+            if width.startswith('+'):
+                # Relative width, needs to know which will be the final length
+                # of the string.
+                # Ignores *trim* function.
+                width = str(int(width[1:]) \
+                            + len("{0:{1}{2}{3}}".format(final_expr, alter,
+                                                          precision, ptype)))
 
 
         # Once all Python-original specs are completed, the conversion is made:
