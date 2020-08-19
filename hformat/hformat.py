@@ -53,9 +53,9 @@
         + 'width' is now checked just before formatting, so relative width can
         work properly even with separators and trimming modifications.
     TODO:
+        + Cath 'SyntaxWarning' int object not subscriptable
         + [Prop] Make the use of extra features optional.
         + Include more f-strings features (such as !s !r or =)
-        + [Doc] Limitations and differences with f-strings
         + [Prop] Allow to use locals and globals optionally.
 
 """
@@ -293,6 +293,8 @@ class HumanFormatter (object):
             final_expr = eval(fake_expr, None, self.given_args)
         except NameError:
             final_expr = expression
+
+        # TODO: Catch 'SyntaxWarning' int object not subscriptable
 
 
         # B. Functions.
