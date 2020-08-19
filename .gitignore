@@ -1,5 +1,7 @@
 # Files
 testing.py
+setup.py
+setup.cfg
 *.pyc
 
 # Folders
@@ -7,3 +9,6 @@ ideas/*
 old/*
 __pycache__/*
 hformat/__pycache__/*
+build/*
+dist/*
+hformat.egg-info/*
