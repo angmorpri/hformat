@@ -49,9 +49,8 @@
 
 
     Created:        06 Ago 2020
-    Last modified:  11 Ago 2020
-        + 'width' is now checked just before formatting, so relative width can
-        work properly even with separators and trimming modifications.
+    Last modified:  20 Ago 2020
+        + Default filling char changed to whitespace ' '.
     TODO:
         + Cath 'SyntaxWarning' int object not subscriptable
         + [Prop] Make the use of extra features optional.
@@ -323,7 +322,7 @@ class HumanFormatter (object):
         fill = align = wrapper = ''
         if get_func('fill', 'field', 'canvas'):
             align = '<'     # Default aligning.
-            fill = self._func.args.get('fillchar', '')
+            fill = self._func.args.get('fillchar', ' ')
 
             if self._func.name == 'canvas':
                 # Canvas filling behave differently depending on the format:
