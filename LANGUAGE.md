@@ -102,8 +102,8 @@ hformat("Example: { : fill(x); width(10), center}", 10)
 # Arguments may or may not be given, and parentheses are optional:
 hformat("Example: { : field(10, x, center), float", 10)
 #                            |                   |
-#				             |                   +--- No args, no parentheses.
-#	                         +------------------------Uses parentheses and have its arguments separated by commas.
+#			     |                   +--- No args, no parentheses.
+#	                     +------------------------Uses parentheses and have its arguments separated by commas.
 # >>> "Example: 10.000000x"
 
 # Arguments are interpreted as string literals, so no variables are allowed, and no quotes are needed.
@@ -140,7 +140,7 @@ hformat("{'Hello world': width(+6), fill(_), center}")
 * **left**, same as `align(left)`.
 * **right**, same as `align(right)`.
 
-* **field ( size, fillchar, align )**, a grouped format for `width`, `fill` and `align`, as they are commonly used together. Following the previous example:
+* **field ( size, fillchar, align )**, a grouped format for `width`, `fill` and `align`, as they are commonly used together. Following the previous examples:
 
 ```python
 hformat("{'Hello world': width(+6), fill(_), center}")
@@ -155,7 +155,7 @@ hformat("{'Hello world': field(+6, _, center), wrap('()')}")	# Look how quotes a
 # >>> "(___Hello world___)"
 
 hformat("{'Hello world': field(+6, _, center), wrap('(.)')}")
-# >>> "(___Hello world___.)"	# If odd number of chars, the closing half will get the center char.
+# >>> "(___Hello world___.)"	# If odd number of chars for wrapping, the closing half will get the center char.
 ```
 
 * **canvas ( size, fillchar, align )**, combines both `field` and `wrap`, and provides an unique way of defining the textfield. Both `size` and `align` arguments work the same as with `field`, but the `fillchar` one changes. Depending on the number of chars given, it will do one thing or another:
